@@ -106,6 +106,22 @@ defmodule CandidateExtractor do
     extract_candidates(GameBoardRotator.rotate_clockwise(board, 1))
   end
 
+  def fold_candidates(board, :left) do
+    fold_left_candidates(board)
+  end
+
+  def fold_candidates(board, :right) do
+    fold_right_candidates(board)
+  end
+
+  def fold_candidates(board, :up) do
+    fold_up_candidates(board)
+  end
+
+  def fold_candidates(board, :down) do
+    fold_down_candidates(board)
+  end
+
   def extract_candidates([a, b, c, d]) do
     candidates = %{0 => LineFolder.can_fold?(a),
       1 => LineFolder.can_fold?(b),

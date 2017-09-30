@@ -20,8 +20,6 @@ defmodule GameBoardFolder do
 
   @doc """
 
-  ## Examples
-
       iex> GameBoardFolder.can_fold_right?([[1,2,3,3],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
       true
 
@@ -97,7 +95,7 @@ defmodule GameBoardFolder do
 
   """
   def fold_left(board) do
-    Enum.map(board, fn(line) -> LineFolder.fold(line) end)
+    rotate_fold_rotate(board, 0, 0)
   end
 
   @doc """
@@ -109,7 +107,7 @@ defmodule GameBoardFolder do
 
   """
   def fold_right(board) do
-    rotate_fold_and_back(board, 2, 2)
+    rotate_fold_rotate(board, 2, 2)
   end
 
   @doc """
@@ -121,7 +119,7 @@ defmodule GameBoardFolder do
 
   """
   def fold_down(board) do
-    rotate_fold_and_back(board, 1, 3)
+    rotate_fold_rotate(board, 1, 3)
   end
 
   @doc """
@@ -133,13 +131,29 @@ defmodule GameBoardFolder do
 
   """
   def fold_up(board) do
-    rotate_fold_and_back(board, 3, 1)
+    rotate_fold_rotate(board, 3, 1)
   end
 
-  def rotate_fold_and_back(board, first_rotation, second_rotation) do
+  def rotate_fold_rotate(board, first_rotation, second_rotation) do
     GameBoardRotator.rotate_clockwise(board, first_rotation)
-      |> fold_left()
+      |> Enum.map(fn(line) -> LineFolder.fold(line) end)
       |> GameBoardRotator.rotate_clockwise(second_rotation)
+  end
+
+  def fold(board, :up) do
+    fold_up(board)
+  end
+
+  def fold(board, :down) do
+    fold_down(board)
+  end
+
+  def fold(board, :left) do
+    fold_left(board)
+  end
+
+  def fold(board, :right) do
+    fold_right(board)
   end
 
 end

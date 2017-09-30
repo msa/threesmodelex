@@ -18,6 +18,9 @@ defmodule LineFolder do
       iex> LineFolder.fold([2,2,2,0])
       [2,2,2,0]
 
+      iex> LineFolder.fold([3,2,2,0])
+      [3,2,2,0]
+
       iex> LineFolder.fold([2,2,0,0])
       [2,2,0,0]
 
@@ -72,6 +75,8 @@ defmodule LineFolder do
       iex> LineFolder.fold([3,1,1,1])
       [3,1,1,1]
 
+      iex> LineFolder.fold([3,6,2,2])
+      [3,6,2,2]
 
   """
   def fold([0,i,j,k]), do: [i,j,k,0]
@@ -81,6 +86,7 @@ defmodule LineFolder do
   def fold([1,1,1,2]), do: [1,1,3,0]
   def fold([1,1,0,0]), do: [1,1,0,0]
   def fold([2,1,1,a]), do: [3,1,a,0]
+  def fold([i,2,2,a]) when i != 1, do: [i,2,2,a]
   def fold([a,1,1,b]) when b != 2, do: [a,1,1,b]
   def fold([1,1,a,b]) when a != b, do: [1,1,a,b]
   def fold([1,1,a,a]) when a > 2, do: [1,1,a + a,0]
@@ -88,6 +94,7 @@ defmodule LineFolder do
   def fold([1,1,1,1]), do: [1,1,1,1]
   def fold([2,2,0,2]), do: [2,2,2,0]
   def fold([2,2,0,a]), do: [2,2,a,0]
+  def fold([2,2,a,b]) when a != 1, do: [2,2,a,b]
   def fold([2,2,2,a]), do: [2,2,2,a]
   def fold([1,2,i,j]), do: [3,i,j,0]
   def fold([2,1,i,j]), do: [3,i,j,0]
@@ -97,6 +104,7 @@ defmodule LineFolder do
 
   def fold([i,1,1,i]), do: [i,1,1,i]
   def fold([i,2,2,i]), do: [i,2,2,i]
+  def fold([i,j,2,2]) when j != 1 , do: [i,j,2,2]
 
   def fold([i,j,1,2]), do: [i,j,3,0]
   def fold([i,j,2,1]), do: [i,j,3,0]

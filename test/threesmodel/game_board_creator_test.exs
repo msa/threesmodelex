@@ -8,8 +8,8 @@ defmodule GameBoardCreatorTest do
   end
 
   test "creates a board with zeros, ones, twos and threes" do
-    [line1, line2, line3, line4] = Enum.uniq(GameBoardCreator.create_game_board())
-    Enum.each(line1 ++ line2 ++ line3 ++ line4, fn(x) -> assert(Enum.member?(0..3, x)) end)
+    values = Enum.uniq(List.flatten(GameBoardCreator.create_game_board()))
+    Enum.each(values, fn(x) -> assert(Enum.member?(0..3, x)) end)
   end
 
 end
