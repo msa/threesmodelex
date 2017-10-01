@@ -22,8 +22,23 @@ defmodule Threesmodelex do
     GameBoardCreator.create_game_board()
   end
 
+  @doc """
+
+  ## Examples
+  iex> b = Threesmodelex.fold([[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]], :left)
+  iex> b == [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
+  true
+  """
   def fold(board, direction) do
-    position = Enum.random(CandidateExtractor.fold_candidates(board, direction))
+    fold(board, direction, CandidateExtractor.fold_candidates(board, direction))
+  end
+
+  def fold(board, _, []) do
+    board
+  end
+
+  def fold(board, direction, candidates) do
+    position = Enum.random(candidates)
     next_number = NextNumberDeterminator.next_number(board)
     GameBoardFolder.fold(board, direction)
       |> NextNumberInserter.insert_on_fold(direction, position, next_number)
