@@ -6,8 +6,8 @@ defmodule SolverBase do
   end
 
   def solve(board, false, fun) do
-    b = fun.(board)
-    solve(b, Threesmodelex.is_game_over?(b), fun)
+    folded_board = fun.(board)
+    solve(folded_board, Threesmodelex.is_game_over?(folded_board), fun)
   end
 
   def solve(board, true, _) do
@@ -23,7 +23,7 @@ defmodule SolverBase do
   def pmap(collection, func) do
     collection
       |> Enum.map(&(Task.async(fn -> func.(&1) end)))
-      |> Enum.map(&Task.await/1)
+      |> Enum.map(fn(task) -> Task.await(task, 100000) end)
   end
 
 end

@@ -7,7 +7,9 @@ defmodule Threesmodelex.Mixfile do
      elixir: "~> 1.4",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps()]
+     deps: deps(),
+     test_coverage: [tool: ExCoveralls],
+   ]
   end
 
   # Configuration for the OTP application
@@ -28,6 +30,8 @@ defmodule Threesmodelex.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [
+      {:excoveralls, "~> 0.7", only: :test}
+    ]
   end
 end
