@@ -1,8 +1,9 @@
-defmodule NextNumberInserter do
+defmodule Threesmodel.NextNumberInserter do
+  alias Threesmodel.GameBoardRotator, as: GameBoardRotator
 
   def insert(board, position, number_to_insert, first_rotation, second_rotation) do
     GameBoardRotator.rotate_clockwise(board, first_rotation)
-    |> List.update_at(position, &(List.replace_at(&1, 3, number_to_insert)))
+    |> List.update_at(position, &List.replace_at(&1, 3, number_to_insert))
     |> GameBoardRotator.rotate_clockwise(second_rotation)
   end
 
@@ -37,5 +38,4 @@ defmodule NextNumberInserter do
   def insert_on_fold(board, :down, position, number_to_insert) do
     insert_on_down_fold(board, position, number_to_insert)
   end
-
 end

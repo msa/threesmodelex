@@ -1,6 +1,8 @@
 defmodule NextNumberInserterTest do
   use ExUnit.Case
-  doctest NextNumberInserter
+  doctest Threesmodel.NextNumberInserter
+
+  alias Threesmodel.NextNumberInserter, as: NextNumberInserter
 
   test "can insert for left folds" do
     board = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]

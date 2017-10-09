@@ -1,5 +1,5 @@
 defmodule CandidateExtractorTest do
   use ExUnit.Case
-  doctest CandidateExtractor
+  doctest Threesmodel.CandidateExtractor
 
 end

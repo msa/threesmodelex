@@ -1,16 +1,18 @@
-defmodule GameBoardFolder do
+defmodule Threesmodel.GameBoardFolder do
+  alias Threesmodel.GameBoardRotator, as: GameBoardRotator
+  alias Threesmodel.LineFolder, as: LineFolder
 
   @doc """
 
   ## Examples
 
-      iex> GameBoardFolder.can_fold_left?([[1,2,3,3],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.GameBoardFolder.can_fold_left?([[1,2,3,3],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
       true
 
-      iex> GameBoardFolder.can_fold_left?([[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.GameBoardFolder.can_fold_left?([[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
       false
 
-      iex> GameBoardFolder.can_fold_left?([[1,2,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.GameBoardFolder.can_fold_left?([[1,2,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
       true
   """
 
@@ -20,13 +22,13 @@ defmodule GameBoardFolder do
 
   @doc """
 
-      iex> GameBoardFolder.can_fold_right?([[1,2,3,3],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.GameBoardFolder.can_fold_right?([[1,2,3,3],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
       true
 
-      iex> GameBoardFolder.can_fold_right?([[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.GameBoardFolder.can_fold_right?([[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
       false
 
-      iex> GameBoardFolder.can_fold_right?([[1,2,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.GameBoardFolder.can_fold_right?([[1,2,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
       true
   """
 
@@ -39,13 +41,13 @@ defmodule GameBoardFolder do
 
   ## Examples
 
-      iex> GameBoardFolder.can_fold_up?([[1,1,3,3],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.GameBoardFolder.can_fold_up?([[1,1,3,3],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
       false
 
-      iex> GameBoardFolder.can_fold_up?([[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.GameBoardFolder.can_fold_up?([[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
       false
 
-      iex> GameBoardFolder.can_fold_up?([[1,2,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.GameBoardFolder.can_fold_up?([[1,2,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
       true
   """
 
@@ -54,27 +56,26 @@ defmodule GameBoardFolder do
     can_fold?(rotated_board)
   end
 
-
   @doc """
 
   ## Examples
 
-      iex> GameBoardFolder.can_fold_down?([[1,1,3,3],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.GameBoardFolder.can_fold_down?([[1,1,3,3],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
       false
 
-      iex> GameBoardFolder.can_fold_down?([[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.GameBoardFolder.can_fold_down?([[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
       false
 
-      iex> GameBoardFolder.can_fold_down?([[0,0,0,0],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.GameBoardFolder.can_fold_down?([[0,0,0,0],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
       false
 
-      iex> GameBoardFolder.can_fold_down?([[1,1,1,0],[1,1,1,0],[1,1,1,0],[1,1,1,0]])
+      iex> Threesmodel.GameBoardFolder.can_fold_down?([[1,1,1,0],[1,1,1,0],[1,1,1,0],[1,1,1,0]])
       false
 
-      iex> GameBoardFolder.can_fold_down?([[1,1,1,1],[1,1,1,1],[0,0,0,0],[1,1,1,1]])
+      iex> Threesmodel.GameBoardFolder.can_fold_down?([[1,1,1,1],[1,1,1,1],[0,0,0,0],[1,1,1,1]])
       true
 
-      iex> GameBoardFolder.can_fold_down?([[1,2,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.GameBoardFolder.can_fold_down?([[1,2,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
       true
   """
 
@@ -83,14 +84,14 @@ defmodule GameBoardFolder do
   end
 
   defp can_fold?(board) do
-    Enum.any?(board, fn(line) -> LineFolder.can_fold?(line) end)
+    Enum.any?(board, fn line -> LineFolder.can_fold?(line) end)
   end
 
   @doc """
 
   ## Examples
 
-      iex> GameBoardFolder.fold_left([[1,1,3,3],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.GameBoardFolder.fold_left([[1,1,3,3],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
       [[1,1,6,0],[1,1,1,1],[1,1,1,1],[1,1,1,1]]
 
   """
@@ -102,7 +103,7 @@ defmodule GameBoardFolder do
 
   ## Examples
 
-      iex> GameBoardFolder.fold_right([[1,1,3,3],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.GameBoardFolder.fold_right([[1,1,3,3],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
       [[0,1,1,6],[1,1,1,1],[1,1,1,1],[1,1,1,1]]
 
   """
@@ -114,7 +115,7 @@ defmodule GameBoardFolder do
 
   ## Examples
 
-      iex> GameBoardFolder.fold_down([[1,1,3,3],[1,2,3,3],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.GameBoardFolder.fold_down([[1,1,3,3],[1,2,3,3],[1,1,1,1],[1,1,1,1]])
       [[1,0,0,0],[1,1,6,6],[1,3,1,1],[1,1,1,1]]
 
   """
@@ -126,7 +127,7 @@ defmodule GameBoardFolder do
 
   ## Examples
 
-      iex> GameBoardFolder.fold_up([[1,1,3,3],[1,2,3,3],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.GameBoardFolder.fold_up([[1,1,3,3],[1,2,3,3],[1,1,1,1],[1,1,1,1]])
       [[1,3,6,6],[1,1,1,1],[1,1,1,1],[1,0,0,0]]
 
   """
@@ -136,8 +137,8 @@ defmodule GameBoardFolder do
 
   def rotate_fold_rotate(board, first_rotation, second_rotation) do
     GameBoardRotator.rotate_clockwise(board, first_rotation)
-      |> Enum.map(fn(line) -> LineFolder.fold(line) end)
-      |> GameBoardRotator.rotate_clockwise(second_rotation)
+    |> Enum.map(fn line -> LineFolder.fold(line) end)
+    |> GameBoardRotator.rotate_clockwise(second_rotation)
   end
 
   def fold(board, :up) do
@@ -155,5 +156,4 @@ defmodule GameBoardFolder do
   def fold(board, :right) do
     fold_right(board)
   end
-
 end

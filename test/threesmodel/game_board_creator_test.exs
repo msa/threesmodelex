@@ -1,6 +1,7 @@
 defmodule GameBoardCreatorTest do
   use ExUnit.Case
-  doctest GameBoardCreator
+  doctest Threesmodel.GameBoardCreator
+  alias Threesmodel.GameBoardCreator, as: GameBoardCreator
 
   test "creates a board with 16 cells" do
     [line1, line2, line3, line4] = GameBoardCreator.create_game_board()

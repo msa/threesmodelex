@@ -1,5 +1,5 @@
 defmodule GameScorerTest do
   use ExUnit.Case
-  doctest GameScorer
+  doctest Threesmodel.GameScorer
 
 end

@@ -1,4 +1,11 @@
 defmodule Threesmodelex do
+  alias Threesmodel.GameBoardCreator, as: GameBoardCreator
+  alias Threesmodel.GameBoardFolder, as: GameBoardFolder
+  alias Threesmodel.CandidateExtractor, as: CandidateExtractor
+  alias Threesmodel.NextNumberDeterminator, as: NextNumberDeterminator
+  alias Threesmodel.NextNumberInserter, as: NextNumberInserter
+  alias Threesmodel.GameScorer, as: GameScorer
+
   @moduledoc """
   Documentation for Threesmodelex.
   """

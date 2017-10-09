@@ -1,5 +1,7 @@
-defmodule HighestPayingNextMoveSolver do
-  import SolverBase, only: :functions
+defmodule Threesmodel.Solvers.HighestPayingNextMoveSolver do
+  import Threesmodel.Solvers.SolverBase, only: :functions
+  alias Threesmodel.GameBoardFolder, as: GameBoardFolder
+  alias Threesmodel.GameScorer, as: GameScorer
 
   def solve(times) do
     run_many(times, fn(board) ->

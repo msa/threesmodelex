@@ -1,5 +1,5 @@
 defmodule LineFolderTest do
   use ExUnit.Case
-  doctest LineFolder
+  doctest Threesmodel.LineFolder
 
 end

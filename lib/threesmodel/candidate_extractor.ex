@@ -1,25 +1,29 @@
-defmodule CandidateExtractor do
+defmodule Threesmodel.CandidateExtractor do
+  alias Threesmodel.GameBoardRotator, as: GameBoardRotator
+  alias Threesmodel.LineFolder, as: LineFolder
+
+
 
   @doc """
 
   ## Examples
 
-      iex> CandidateExtractor.fold_left_candidates([[1,2,3,3],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.CandidateExtractor.fold_left_candidates([[1,2,3,3],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
       [0]
 
-      iex> CandidateExtractor.fold_left_candidates([[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.CandidateExtractor.fold_left_candidates([[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
       []
 
-      iex> CandidateExtractor.fold_left_candidates([[1,1,1,1],[1,1,2,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.CandidateExtractor.fold_left_candidates([[1,1,1,1],[1,1,2,1],[1,1,1,1],[1,1,1,1]])
       [1]
 
-      iex> CandidateExtractor.fold_left_candidates([[1,1,1,1],[1,1,1,1],[1,1,2,1],[1,1,1,1]])
+      iex> Threesmodel.CandidateExtractor.fold_left_candidates([[1,1,1,1],[1,1,1,1],[1,1,2,1],[1,1,1,1]])
       [2]
 
-      iex> CandidateExtractor.fold_left_candidates([[1,1,1,1],[1,1,1,1],[1,1,1,1],[2,1,1,1]])
+      iex> Threesmodel.CandidateExtractor.fold_left_candidates([[1,1,1,1],[1,1,1,1],[1,1,1,1],[2,1,1,1]])
       [3]
 
-      iex> CandidateExtractor.fold_left_candidates([[2,1,1,1],[1,2,1,1],[1,1,2,1],[1,1,1,2]])
+      iex> Threesmodel.CandidateExtractor.fold_left_candidates([[2,1,1,1],[1,2,1,1],[1,1,2,1],[1,1,1,2]])
       [0, 1, 2, 3]
   """
 
@@ -31,22 +35,22 @@ defmodule CandidateExtractor do
 
   ## Examples
 
-      iex> CandidateExtractor.fold_right_candidates([[1,2,3,3],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.CandidateExtractor.fold_right_candidates([[1,2,3,3],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
       [3]
 
-      iex> CandidateExtractor.fold_right_candidates([[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.CandidateExtractor.fold_right_candidates([[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
       []
 
-      iex> CandidateExtractor.fold_right_candidates([[1,1,1,1],[1,1,2,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.CandidateExtractor.fold_right_candidates([[1,1,1,1],[1,1,2,1],[1,1,1,1],[1,1,1,1]])
       [2]
 
-      iex> CandidateExtractor.fold_right_candidates([[1,1,1,1],[1,1,1,1],[1,1,2,1],[1,1,1,1]])
+      iex> Threesmodel.CandidateExtractor.fold_right_candidates([[1,1,1,1],[1,1,1,1],[1,1,2,1],[1,1,1,1]])
       [1]
 
-      iex> CandidateExtractor.fold_right_candidates([[1,1,1,1],[1,1,1,1],[1,1,1,1],[2,1,1,1]])
+      iex> Threesmodel.CandidateExtractor.fold_right_candidates([[1,1,1,1],[1,1,1,1],[1,1,1,1],[2,1,1,1]])
       [0]
 
-      iex> CandidateExtractor.fold_right_candidates([[2,1,1,1],[1,2,1,1],[1,1,2,1],[1,1,1,2]])
+      iex> Threesmodel.CandidateExtractor.fold_right_candidates([[2,1,1,1],[1,2,1,1],[1,1,2,1],[1,1,1,2]])
       [0, 1, 2, 3]
   """
 
@@ -58,22 +62,22 @@ defmodule CandidateExtractor do
 
   ## Examples
 
-      iex> CandidateExtractor.fold_up_candidates([[1,2,3,3],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.CandidateExtractor.fold_up_candidates([[1,2,3,3],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
       [2]
 
-      iex> CandidateExtractor.fold_up_candidates([[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.CandidateExtractor.fold_up_candidates([[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
       []
 
-      iex> CandidateExtractor.fold_up_candidates([[1,1,1,1],[1,1,2,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.CandidateExtractor.fold_up_candidates([[1,1,1,1],[1,1,2,1],[1,1,1,1],[1,1,1,1]])
       [1]
 
-      iex> CandidateExtractor.fold_up_candidates([[1,1,1,1],[1,1,1,1],[1,1,2,1],[1,1,1,1]])
+      iex> Threesmodel.CandidateExtractor.fold_up_candidates([[1,1,1,1],[1,1,1,1],[1,1,2,1],[1,1,1,1]])
       [1]
 
-      iex> CandidateExtractor.fold_up_candidates([[1,1,1,1],[1,1,1,1],[1,1,1,1],[2,1,1,1]])
+      iex> Threesmodel.CandidateExtractor.fold_up_candidates([[1,1,1,1],[1,1,1,1],[1,1,1,1],[2,1,1,1]])
       [3]
 
-      iex> CandidateExtractor.fold_up_candidates([[2,1,1,1],[1,2,1,1],[1,1,2,1],[1,1,1,2]])
+      iex> Threesmodel.CandidateExtractor.fold_up_candidates([[2,1,1,1],[1,2,1,1],[1,1,2,1],[1,1,1,2]])
       [0, 1, 2, 3]
   """
   def fold_up_candidates(board) do
@@ -84,22 +88,22 @@ defmodule CandidateExtractor do
 
   ## Examples
 
-      iex> CandidateExtractor.fold_down_candidates([[1,2,3,3],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.CandidateExtractor.fold_down_candidates([[1,2,3,3],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
       [1]
 
-      iex> CandidateExtractor.fold_down_candidates([[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.CandidateExtractor.fold_down_candidates([[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
       []
 
-      iex> CandidateExtractor.fold_down_candidates([[1,1,1,1],[1,1,2,1],[1,1,1,1],[1,1,1,1]])
+      iex> Threesmodel.CandidateExtractor.fold_down_candidates([[1,1,1,1],[1,1,2,1],[1,1,1,1],[1,1,1,1]])
       [2]
 
-      iex> CandidateExtractor.fold_down_candidates([[1,1,1,1],[1,1,1,1],[1,1,2,1],[1,1,1,1]])
+      iex> Threesmodel.CandidateExtractor.fold_down_candidates([[1,1,1,1],[1,1,1,1],[1,1,2,1],[1,1,1,1]])
       [2]
 
-      iex> CandidateExtractor.fold_down_candidates([[1,1,1,1],[1,1,1,1],[1,1,1,1],[2,1,1,1]])
+      iex> Threesmodel.CandidateExtractor.fold_down_candidates([[1,1,1,1],[1,1,1,1],[1,1,1,1],[2,1,1,1]])
       [0]
 
-      iex> CandidateExtractor.fold_down_candidates([[2,1,1,1],[1,2,1,1],[1,1,2,1],[1,1,1,2]])
+      iex> Threesmodel.CandidateExtractor.fold_down_candidates([[2,1,1,1],[1,2,1,1],[1,1,2,1],[1,1,1,2]])
       [0, 1, 2, 3]
   """
   def fold_down_candidates(board) do
@@ -123,11 +127,13 @@ defmodule CandidateExtractor do
   end
 
   def extract_candidates([a, b, c, d]) do
-    candidates = %{0 => LineFolder.can_fold?(a),
+    candidates = %{
+      0 => LineFolder.can_fold?(a),
       1 => LineFolder.can_fold?(b),
       2 => LineFolder.can_fold?(c),
-      3 => LineFolder.can_fold?(d)}
-     cand_map = Enum.filter(candidates, fn {_, v} -> v == true end)
-     Enum.map(cand_map, fn {k, _} -> k end)
+      3 => LineFolder.can_fold?(d),
+    }
+    cand_map = Enum.filter(candidates, fn {_, v} -> v == true end)
+    Enum.map(cand_map, fn {k, _} -> k end)
   end
 end

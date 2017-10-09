@@ -1,9 +1,10 @@
-defmodule RecursiveTestingSolver do
-  import SolverBase, only: :functions
+defmodule Threesmodel.Solvers.RecursiveTestingSolver do
+  import Threesmodel.Solvers.SolverBase, only: :functions
+  alias Threesmodel.GameBoardFolder, as: GameBoardFolder
 
   def solve(times) do
     run_many(times, fn(board) ->
-      [move, _] = RecursiveTestingSolver.recursive_play(3, board, 0)
+      [move, _] = recursive_play(3, board, 0)
       Threesmodelex.fold(board, move)
     end)
   end

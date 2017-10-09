@@ -1,4 +1,5 @@
-defmodule SolverBase do
+defmodule Threesmodel.Solvers.SolverBase do
+  alias Threesmodel.NextNumberDeterminator, as: NextNumberDeterminator
 
   def run(fun) do
     game = Threesmodelex.start_new_game
@@ -16,7 +17,7 @@ defmodule SolverBase do
   end
 
   def run_many(times, fun) do
-    {:ok, pid} = Task.start_link(fn -> SolverBase.collect(%{3 => 0, 6 => 0, 12 => 0, 24 => 0, 48 => 0, 96 => 0, 192 => 0, 384 => 0, 768 => 0, 1536 => 0, 3072 => 0, 6144 => 0, 12288 => 0, 24576 => 0}) end)
+    {:ok, pid} = Task.start_link(fn -> collect(%{3 => 0, 6 => 0, 12 => 0, 24 => 0, 48 => 0, 96 => 0, 192 => 0, 384 => 0, 768 => 0, 1536 => 0, 3072 => 0, 6144 => 0, 12288 => 0, 24576 => 0}) end)
     Process.register(pid, :stats)
     best_game = 1..times
       |> pmap(fn(_) -> run(fun) end)
@@ -36,9 +37,9 @@ defmodule SolverBase do
   def collect(state) do
     receive do
       {:high_cell, value} -> collect(Enum.map(state, fn({key, val}) -> if key == value do {key, val + 1} else {key, val} end end))
-      {:do_end} -> IO.inspect(state)
-      junk ->
-        IO.inspect(junk)
+      {:do_end} ->
+        IO.inspect(state)
+      _ ->
         collect(state)
     end
   end
