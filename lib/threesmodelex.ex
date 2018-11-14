@@ -100,4 +100,15 @@ defmodule Threesmodelex do
       |> Enum.map(fn({direction, _}) -> direction end)
   end
 
+  def start_knowledge_file() do
+    {:ok, file} = File.open "game_knowledge.csv", [:write]
+    IO.write file, "board, move"
+    File.close file
+  end
+
+  def add_to_knowledge(board, move) do
+    {:ok, file} = File.open "game_knowledge.csv", [:write]
+    IO.write(file, inspect(board) <> ", " <> inspect(move))
+    File.close file
+  end
 end
