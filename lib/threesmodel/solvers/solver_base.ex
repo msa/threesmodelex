@@ -19,11 +19,15 @@ defmodule Threesmodel.Solvers.SolverBase do
   def run_many(times, fun) do
     {:ok, pid} = Task.start_link(fn -> collect(%{3 => 0, 6 => 0, 12 => 0, 24 => 0, 48 => 0, 96 => 0, 192 => 0, 384 => 0, 768 => 0, 1536 => 0, 3072 => 0, 6144 => 0, 12288 => 0, 24576 => 0}) end)
     Process.register(pid, :stats)
-    best_game = 1..times
-      |> pmap(fn(_) -> run(fun) end)
-      |> Enum.max_by(fn([{:score, score}, _]) -> score end)
-    IO.puts("*****   BEST GAME   *****")
-    IO.inspect(best_game)
+    Threesmodel.KnowledgeRecorder.start_link()
+    for _ <- 0..times do
+      best_game = 1..10000
+        |> pmap(fn(_) -> run(fun) end)
+        |> Enum.max_by(fn([{:score, score}, _]) -> score end)
+      IO.puts("*****   BEST GAME   *****")
+      IO.inspect(best_game)
+      Threesmodel.KnowledgeRecorder.write()
+    end
     IO.puts("*****   HISTOGRAM   *****")
     send :stats, {:do_end}
   end

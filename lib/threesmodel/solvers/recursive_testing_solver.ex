@@ -3,10 +3,9 @@ defmodule Threesmodel.Solvers.RecursiveTestingSolver do
   alias Threesmodel.GameBoardFolder, as: GameBoardFolder
 
   def solve(times) do
-    {:ok, pid} = Threesmodel.KnowledgeRecorder.start_link()
     run_many(times, fn(board) ->
       [move, _] = recursive_play(3, board, 0)
-      Threesmodel.KnowledgeRecorder.add_to_knowledge(pid, board, move)
+      Threesmodel.KnowledgeRecorder.add_to_knowledge(inspect(self()), board, move)
       Threesmodelex.fold(board, move)
     end)
   end
