@@ -61,7 +61,7 @@ defmodule Threesmodel.KnowledgeRecorder do
       |> Enum.map(&String.slice(&1, 1, String.length(&1) - 2))
       |> Enum.join("\n")
 
-    File.write("knowledge_log.csv", knowledge)
+    File.write("knowledge_log.csv", knowledge, [:append])
     {:noreply, %{}}
   end
 end
