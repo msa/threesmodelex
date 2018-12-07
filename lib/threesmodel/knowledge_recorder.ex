@@ -13,7 +13,7 @@ defmodule Threesmodel.KnowledgeRecorder do
     GenServer.start_link(__MODULE__, %{}, name: :recorder)
   end
 
-  def construct_knowledge_record(game_id, board, move) do
+  def construct_knowledge_record(board, move) do
     List.flatten(board) ++
       [
         move,
@@ -21,7 +21,6 @@ defmodule Threesmodel.KnowledgeRecorder do
         GameBoardFolder.can_fold_up?(board),
         GameBoardFolder.can_fold_left?(board),
         GameBoardFolder.can_fold_right?(board),
-        game_id,
         Threesmodel.GameScorer.score_for(board)
       ]
   end
@@ -35,7 +34,7 @@ defmodule Threesmodel.KnowledgeRecorder do
   end
 
   def add_to_knowledge(game_id, board, move) do
-    add_to_knowledge(game_id, construct_knowledge_record(game_id, board, move))
+    add_to_knowledge(game_id, construct_knowledge_record(board, move))
   end
 
   def init(logfile) do
@@ -60,6 +59,7 @@ defmodule Threesmodel.KnowledgeRecorder do
       |> Enum.map(&inspect/1)
       |> Enum.map(&String.slice(&1, 1, String.length(&1) - 2))
       |> Enum.join("\n")
+      |> Kernel.<>("\n")
 
     File.write("knowledge_log.csv", knowledge, [:append])
     {:noreply, %{}}
